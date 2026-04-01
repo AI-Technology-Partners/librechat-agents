@@ -266,10 +266,12 @@ const createSearXNGAPI = (
         format: 'json',
         pageno: 1,
         categories: category,
-        language: 'all',
+        language: process.env.SEARXNG_LANGUAGE ?? 'all',
         safesearch: safeSearch,
-        engines: 'google,bing,duckduckgo',
+        engines: process.env.SEARXNG_ENGINES ?? 'google,duckduckgo',
       };
+
+      console.log('SearXNG params:', params); //AITP: ADD
 
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
